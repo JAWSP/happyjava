@@ -1,12 +1,13 @@
 package day02;
 
 public class Question {
+    //섭씨를 화씨로
     public static void q1(int c)
     {
         double result = c * 9 / 5 + 32;
         System.out.println("섭씨 " + c + " 는 화씨 " + result);
     }
-
+    //받은 인자가 홀짝인지 판별
     public static void q2(int c)
     {
         if (c % 2 == 0)
@@ -14,6 +15,7 @@ public class Question {
         else
             System.out.println("C는 홀수네");
     }
+    //구구단 2~9단까지
     public static void q3()
     {
         int i = 0;
@@ -37,6 +39,7 @@ public class Question {
             System.out.print("\n");
         }
     }
+    //팩토리얼!
     public static void q4(int c)
     {
         long value = 1;
@@ -47,6 +50,7 @@ public class Question {
         }
         System.out.println("value is " + value);
     }
+    //업다운 게임
     public static void q5(String[] args)
     {
         int answer = Integer.parseInt(args[0]);
@@ -66,6 +70,7 @@ public class Question {
         }
 
     }
+    //전부다 더하기
     public static void q6(String[] args)
     {
         int i = 0;
@@ -77,6 +82,7 @@ public class Question {
         while(i < args.length);
         System.out.println(value);
     }
+    //받은 인자가 홀짝인지 판별
     public static void q7(String[] args) {
         for(int i = 0; i < args.length; i++)
         {
@@ -86,6 +92,7 @@ public class Question {
                 System.out.println(args[i] + "는 짝수");
         }
     }
+    //인자 받아서 사칙연산 하기
     public static void q8(String[] args) {
         if (args.length != 3)
             System.out.println("숫자 숫자 사칙연산 넣으시오");
