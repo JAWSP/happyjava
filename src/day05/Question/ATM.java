@@ -1,6 +1,7 @@
 package day05.Question;
 
 import java.security.PublicKey;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ATM {
@@ -13,7 +14,7 @@ public class ATM {
     //이름 찾기
     public int selectAccount(String name) {
         for (int i = 0; i < accounts.length; i++)
-            if (name == accounts[i].accountHolderName)
+            if (Objects.equals(name, accounts[i].accountHolderName))
                 return i;
         return -1;
     }
