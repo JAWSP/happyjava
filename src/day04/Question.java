@@ -47,11 +47,30 @@ class Animal {
 
     String getName() {return this.name;}
     String getType() {return this.type;}
+
+    public Animal initAnimal(String name, String type) {
+        Animal animal = new Animal();
+        animal.name = name;
+        animal.type = type;
+        return animal;
+    }
+
 }
 
 public class Question {
 
+    int a;
+    int b;
+    public Question init(int c, int d)
+    {
+        Question q = new Question();
+        q.a = c;
+        q.b = d;
+        return q;
+    }
+
     public static void main(String[] args) {
+
         Student student = new Student();
         student.setName("asd");
         student.setAge(10);
