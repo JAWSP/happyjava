@@ -21,7 +21,6 @@ public class Account {
         this.accountNum = accountNum;
         this.customerID = customerID;
         this.balance = balance;
-        //System.out.println(customerID + " is added@");
     }
     //입금
     public void pushMoney(int money) {
@@ -34,7 +33,7 @@ public class Account {
         System.out.println("F L E X ?");
         this.balance -= balance;
     }
-
+    //쇼미더머니
     public int showMeTheMoney() {
         return this.balance;
     }
