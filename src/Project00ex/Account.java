@@ -1,7 +1,7 @@
-package Project00;
+package Project00ex;
 
 
-import Project00.Exceptions.InvalidTransactionException;
+import Project00ex.Exceptions.InvalidTransactionException;
 
 /*
 계좌

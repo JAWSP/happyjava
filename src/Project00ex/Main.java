@@ -1,8 +1,8 @@
-package Project00;
+package Project00ex;
 
-import Project00.Exceptions.AccountNotFoundException;
-import Project00.Exceptions.BankOperationException;
-import Project00.Exceptions.InvalidTransactionException;
+import Project00ex.Exceptions.AccountNotFoundException;
+import Project00ex.Exceptions.BankOperationException;
+import Project00ex.Exceptions.InvalidTransactionException;
 
 import java.util.Scanner;
 
@@ -170,7 +170,7 @@ public class Main {
             System.out.println("5. 잔액 조회");
             System.out.println("6. 종료");
             int input;
-
+            
             try {
                 input = keyboard.nextInt();
             }

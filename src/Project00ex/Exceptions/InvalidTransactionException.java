@@ -1,4 +1,4 @@
-package Project00;
+package Project00ex.Exceptions;
 
 //너님 돈없
 public class InvalidTransactionException extends Exception {
