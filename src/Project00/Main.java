@@ -30,6 +30,7 @@ public class Main {
             if (target == null)
                 throw new AccountNotFoundException("이름이 없는데요");
 
+            //랜덤으로 만들지 그랬어
             System.out.println("원하시는 계좌 번호를 입력하시오");
             int input = keyboard.nextInt();
             System.out.println("입금하실 금액을 입력하시오");

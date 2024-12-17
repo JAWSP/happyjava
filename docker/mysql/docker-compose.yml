@@ -1,0 +1,21 @@
+version: "2"
+
+services:
+  vacation-db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "root1234"
+      MYSQL_DATABASE: "exampledb"
+      MYSQL_USER: "asd"
+      MYSQL_PASSWORD: "1234"
+      T2: Asia/Seoul
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./database/init/:/docker-entrypoint-initdb.d/
+      - ./database/datadir/:/var/lib/mysql
+    platform: linux/x86_64
+    ports:
+      - 3306:3306
