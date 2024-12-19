@@ -119,7 +119,7 @@ select ename, sal, deptno from emp o
 select deptno, max(sal) from emp group by deptno;    
 select e.deptno, e.empno, e.ename, e.sal 
 	from emp e, (select deptno, max(sal) mx from emp group by deptno) m
-    where e.deptno = m.deptno and e.sal = m.mx order by 1; 
+    where e.deptno = m.deptno and e.sal = m.mx; 
 
 
 SELECT  deptno, empno, ename, sal

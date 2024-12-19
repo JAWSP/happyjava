@@ -80,3 +80,10 @@ select deptno, avg(sal) a from emp
 -- 사원 이름과 부서명을 출력, 단, 부서번호가  20번인 사원만 출력
 select e.deptno, e.ename, d.dname from emp e, dept d where e.deptno = d.deptno and e.deptno = 20;
 
+-- 얜 독자적인 table
+desc salgrade;
+select * from salgrade;
+-- 얘가 theta join
+select e.ename, e.sal, s.grade
+from emp e, salgrade s
+where e.sal between s.losal and s.hisal;
