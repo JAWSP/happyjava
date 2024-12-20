@@ -53,3 +53,5 @@ create database hr;
 flush privileges;
 set GLOBAL time_zone = 'Asia/Seoul'; -- 시간 잘 맞추기
 
+use scott;
+select * from dept;
