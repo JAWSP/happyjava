@@ -18,10 +18,12 @@ import java.util.List;
 
  */
 public class empDAO {
-    static Connection conn;
-    static PreparedStatement ps;
+
+    //conn ps static하지마샘
     //c
     public boolean empInsert(empDTO dto) {
+        Connection conn = null;
+        PreparedStatement ps = null;
         boolean flag = false;
         String sql = "insert into emp(ename, job, mgr, sal, comm, deptno) values(?, ?, ?, ?, ?, null)";
         try {
@@ -51,6 +53,8 @@ public class empDAO {
 
     //r
     public List<empDTO> empSelect(empDTO dto) {
+        Connection conn= null;
+        PreparedStatement ps= null;
         List<empDTO> empList = new ArrayList<empDTO>();
         ResultSet res = null;
         String sql = "select * from emp";
