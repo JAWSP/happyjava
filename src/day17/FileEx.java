@@ -4,7 +4,7 @@ import java.io.File;
 
 public class FileEx {
     public static void main(String[] args) {
-        File file = new File("tmm");
+        File file = new File("input.txt");
 
         try {
             if (!file.exists()) {
