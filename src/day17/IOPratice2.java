@@ -39,6 +39,7 @@ public class IOPratice2 {
                // out.write(c); //만약에 write할떄 파일이 없다면 만든다고함
                 //여러개 받고싶다면 앞에 저렇게 버퍼를 받는걸로
                 out.write(buffer, 0, c);
+                System.out.println(buffer);
             }
         }catch (Exception e) {
             System.out.println(e);

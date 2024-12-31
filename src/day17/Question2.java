@@ -39,6 +39,7 @@ class UserInputHandler {
 
     public List<String> getUserInput() throws IOException {
         List result = new ArrayList<>();
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         for (int i = 0; i < 3; i++) {
             result.add(br.readLine());

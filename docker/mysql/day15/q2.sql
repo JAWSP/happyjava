@@ -6,6 +6,8 @@ desc locations;
 desc countries;
 desc regions;
 desc job_history;
+use scott;
+select deptno ename, sal, comm from emp order by 3 desc,2;
 #1 모든 직원의 이름(first_name)과 성(last_name)을 조회
 select first_name, last_name FROM employees;
 -- 2모든 부서의 이름과 위치 ID를 조회
@@ -51,5 +53,44 @@ SELECT first_name, email FROM employees WHERE last_name LIKE "%a%";
 SELECT distinct e.* FROM employees e, departments d WHERE e.department_id = 
 	(SELECT d.department_id FROM departments d WHERE d.department_name = 'Sales');
     
--- 1 각 직원의 입사 연도를 조회
-SELECT first_name, hire_date from employees;
+-- 1 각 직원의 입사 연도를 조회(연도만 뽑아서)
+SELECT first_name, YEAR(hire_date) from employees;
+-- 2 근무 기간을 월로 계산
+SELECT employee_id, TIMESTAMPDIFF(MONTH, start_date, end_date) FROM job_history;
+-- 3 오늘로부터 입사한 지 10년 된 직원들의 이름과 입사 날짜를 조회
+SELECT last_name, hire_date from employees WHERE TIMESTAMPDIFF(YEAR, hire_date, now()) > 10;
+-- 4 이번 달이 입사월인 직원들의 이름과 입사일을 조회
+SELECT last_name, hire_date FROM employees WHERE DATE_FORMAT(now(), '%m') = DATE_FORMAT(hire_date, '%m');
+-- 5 입사 날짜가 최근 30년 이내인 직원들의 이름과 입사 날짜를 조회
+SELECT last_name, hire_date FROM employees WHERE TIMESTAMPDIFF(YEAR, hire_date, now()) < 30;
+-- 6 job_history 테이블에서 직원이 특정 부서에 근무한 기간을 일(days) 단위로 조회
+SELECT employee_id, department_id, TIMESTAMPDIFF(DAY, start_date, end_date) FROM job_history;
+-- 7 가장 오래전에 입사한 직원의 이름과 입사 날짜를 조회
+SELECT first_name, last_name, hire_date from employees ORDER BY hire_date LIMIT 1;
+-- 8 employees 테이블에서 각 직원의 입사일로부터 경과한 일수를 조회하세요
+SELECT first_name, last_name, hire_date, TIMESTAMPDIFF(DAY, hire_date, now()) from employees;
+-- 9 1999년대에 시작된 모든 근무 기록을 조회
+SELECT * FROM job_history WHERE DATE_FORMAT(start_date, '%Y') = 1999;
+-- 10 각 직원의 입사 날짜를 요일로 표시
+SELECT first_name, last_name, hire_date, DATE_FORMAT(hire_date,"%W") FROM employees;
+
+-- 1 각 직원의 급여에 10% 인상된 금액을 계산하여 조회
+SELECT first_name, last_name, salary * 1.1 FROM employees;
+-- 2 각 직업의 최소 급여와 최대 급여의 차이를 계산
+SELECT job_title, max_salary - min_salary FROM jobs;
+-- 3 각 직원의 급여를 원화로 환산하여 조회
+SELECT first_name, last_name, salary * 1500 FROM employees;
+-- 4 전체 직원의 평균 급여보다 높은 급여를 받는 직원들의 이름과 급여를 조회
+SELECT first_name, last_name, salary FROM employees WHERE salary > (SELECT avg(salary) FROM employees);
+-- 5 각 직원의 급여에서 평균 급여를 뺀 금액을 계산하여 조회
+SELECT first_name, last_name, salary - (SELECT avg(salary) FROM employees) FROM employees;
+-- 6 급여의 표준 편차를 계산하여 조회
+SELECT STD(salary) FROM employees;
+-- 7 각 직원의 연봉을 계산하고, 연봉이 가장 높은 순으로 정렬하여 조회
+SELECT first_name, last_name, salary * 12 FROM employees ORDER BY salary desc;
+-- 8 부서 변경 횟수를 계산
+SELECT COUNT(*) FROM job_history;
+-- 9 직원들의 급여를 오름차순으로 정렬하여 조회
+SELECT first_name, last_name, salary FROM employees ORDER BY salary;
+
+-- 10
