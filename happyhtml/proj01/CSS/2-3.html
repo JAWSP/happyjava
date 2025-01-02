@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>선택자의 종류</title>
+    <style type="text/css">
+      /*전부다 지정하는 선택자*/
+      * {
+        margin: 100;
+        padding: 0;
+      }
+      /* 특정 부분을 지정하는 선택자, 여러개 지정 가능*/
+      .b {
+        color: rgb(146, 29, 125);
+      }
+      /*클래스 선택자를 불러오기*/
+      .a {
+        color: #f62727;
+      }
+      .class-selector {
+        font-size: 100px;
+      }
+      /*id 클래스 선택자 -> 모든 설정의 우선순위*/
+      #type-selector {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="type-selector">
+      <!-- 이렇게 sql처럼 다른 이름으로 다시 지정 가능 -->
+      <h1 class="class-selector b">선택자란?</h1>
+      <p class="a">
+        선택자는 CSS에서 HTML의 특정 요소를 선택하기 위한 규칙입니다.
+      </p>
+    </div>
+  </body>
+</html>

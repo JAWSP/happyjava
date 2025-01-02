@@ -6,7 +6,9 @@ desc locations;
 desc countries;
 desc regions;
 desc job_history;
+select * from employees;
 use scott;
+select * from emp;
 select deptno ename, sal, comm from emp order by 3 desc,2;
 #1 모든 직원의 이름(first_name)과 성(last_name)을 조회
 select first_name, last_name FROM employees;
@@ -93,4 +95,24 @@ SELECT COUNT(*) FROM job_history;
 -- 9 직원들의 급여를 오름차순으로 정렬하여 조회
 SELECT first_name, last_name, salary FROM employees ORDER BY salary;
 
--- 10
+-- 1 직원의 성(last_name)을 대문자로 변환하여 조회하기:
+SELECT first_name, upper(last_name) FROM employees;
+-- 2 직원의 이름(first_name)의 첫 글자를 추출하기:
+SELECT substr(first_name, 1, 1), last_name FROM employees;
+-- 3 직원의 성(last_name)에서 'a'가 몇 번 나오는지 세기:
+-- 전체길이 - 찾고자 하는 부분 뺀 나머지 = 찾고자 하는 부분의 수
+SELECT length(last_name) - length(REPLACE(last_name, 'a','')) FROM employees;
+-- 4 직원의 이메일에서 도메인 부분만 추출하기 (@ 이후 문자열):
+SELECT email FROM employees; #@가 없는데요
+-- 5 직원의 전체 이름을 성과 이름으로 구분하여 조회하기:
+SELECT concat(first_name, ' ', last_name) AS full_name FROM employees;
+-- 6 직원의 이름(first_name)에서 세 번째 문자부터 세 글자 가져오기:
+SELECT substr(first_name, 3, 3) FROM employees;
+-- 7 모든 직원의 성(last_name)을 쉼표와 공백 후 이름(first_name)으로 표시하기:
+SELECT concat(last_name, ', ', first_name) AS full_name FROM employees;
+-- 8 직원의 이름(first_name)의 길이를 구하여 조회하기:
+SELECT length(first_name) AS len FROM employees;
+-- 9 직원의 성(last_name)이 'King'인 직원 찾기 (대소문자 구분 없이):
+SELECT first_name, last_name FROM employees where last_name = "King";
+-- 10 직원의 성(last_name) 중 'M'으로 시작하는 사람들의 수 구하기:
+SELECT count(last_name) FROM employees where last_name like "M%";

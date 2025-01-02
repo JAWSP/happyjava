@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS속성 - Padding</title>
+    <style type="text/css">
+      .box1 {
+        width: 200px;
+        height: 200px;
+        background-color: #438eb9;
+        display: inline-block; /*그냥 block하면 한줄에 하나씩 안해도 된다고*/
+        padding: 70px;
+        padding-left: 2px; /*패딩은 직접 지정 가능*/
+      }
+      .box2 {
+        width: 200px;
+        height: 200px;
+        background-color: #629b58;
+        display: inline-block;
+        padding: 70px 80px; /*패딩의 크기는 저 박스 색깔의 크기*/
+      }
+      .box3 {
+        width: 200px;
+        height: 200px;
+        background-color: #e59729;
+        display: inline-block;
+        padding: 60px 70px 80px; /*위, 아래 양옆
+                                   4개는 양 옆 대신 왼쪽, 오른쪽*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <div class="box3">box3</div>
+    <div class="box4">box4</div>
+    <div class="box5">box5</div>
+  </body>
+</html>
