@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" >
-        <title>CSS속성 - Text</title>
-        <style type="text/css">
-            .class-selector {
-                text-align:center;
-                letter-spacing: 5px;
-                word-spacing:30px; 
-                text-indent:0;
-                text-decoration:underline;               
-            }
-            p { 
-                text-indent: 300px; 
-            }
-        </style>
-    </head>
-    <body>
-        <div>
-            <p> 선택자는 CSS에서 HTML의 특정 요소를 선택하기 위한 규칙입니다.</p>
-            <p class="class-selector"> 선택자는 CSS에서 HTML의 특정 요소를 선택하기 위한 규칙입니다.</p>
-        </div>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS속성 - Text</title>
+    <style type="text/css">
+      .class-selector {
+        text-align: center; /*가운데 정렬*/
+        letter-spacing: 5px; /*글자 간격*/
+        word-spacing: 30px; /*공백 간격*/
+        text-indent: 0;
+        text-decoration: underline;
+      }
+      p {
+        text-indent: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>선택자는 CSS에서 HTML의 특정 요소를 선택하기 위한 규칙입니다.</p>
+      <!--클래스가 그냥 선택자보다 더 우선순위로 지정된다-->
+      <p class="class-selector">
+        선택자는 CSS에서 HTML의 특정 요소를 선택하기 위한 규칙입니다.
+      </p>
+    </div>
+  </body>
 </html>

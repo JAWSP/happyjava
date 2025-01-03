@@ -1,36 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>CSS3 Property Basic</title>
     <style>
-        .box { 
-            width: 100px; height: 100px; 
-            position: absolute;
-        }
-        .box:nth-child(1) {
-            background-color: red;
-            left: 10px; top: 10px;
-            z-index: 100;
-        }
-        .box:nth-child(2) {
-            background-color: green;
-            left: 50px; top: 50px;
-            z-index: 10;
-        }
-        .box:nth-child(3) { 
-            background-color: blue;
-            left: 90px; top: 90px;
-            z-index: 1;
-        }
+      .box {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+      }
+      .box:nth-child(1) {
+        background-color: red;
+        left: 10px;
+        top: 10px;
+        z-index: 100;
+      }
+      .box:nth-child(2) {
+        background-color: green;
+        left: 50px;
+        top: 50px;
+        z-index: 10;
+      }
+      .box:nth-child(3) {
+        background-color: blue;
+        left: 90px;
+        top: 90px;
+        z-index: 1;
+      }
+      /*글*/
+      body > div {
+        position: relative;
+        width: 400px;
+        height: 100px;
+        border: 3px, solid, black;
+        /*overflow: hidden;*/
+        /*박스 안에 딱 들어가게 해준다고 한다*/
+        /* overflow: scroll; */
+        /*박스에 스크롤을 넣어준다*/
+        overflow-y: scroll;
+        /*y축에만 적용이 가능하다*/
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Lorem ipsum dolor amet</h1>
+    <!--값을 안가져서 영역을 차지 못하고있음-->
     <div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
     </div>
     <h1>Lorem ipsum dolor amet</h1>
-</body>
+  </body>
 </html>
