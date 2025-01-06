@@ -1,0 +1,74 @@
+body {
+  width: 1080px;
+  margin: 0px auto;
+  background-image: linear-gradient(
+    to right,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    purple
+  );
+  width: 500px;
+  height: 300px;
+}
+
+header,
+section.main {
+  /*칸 간격을 0px로 하고 좌우는 재동으로 한다는뜻*/
+  margin: 0px auto;
+  margin-bottom: 10px;
+  color: aliceblue;
+}
+
+header {
+  height: 90px;
+  width: 1080px;
+  margin-top: 10px;
+}
+
+header ul {
+  float: left;
+}
+
+header ul li {
+  display: inline-block;
+  margin: 15px;
+  padding: 10px;
+  color: darksalmon;
+  text-align: center;
+  border-style: double;
+  background-color: azure;
+  width: 100px;
+  box-shadow: 1px, 2px, 7px, 1px gray;
+}
+
+section.main {
+  text-align: center;
+  position: relative;
+}
+
+section.main > * {
+  margin-bottom: 20px;
+}
+
+section.main h2 {
+  font-size: 2em;
+  margin-top: 20px;
+}
+
+section.main li {
+  margin: 10px;
+}
+
+section.main p {
+  margin: 5px;
+}
+
+section.main img {
+  margin: auto;
+  position: relative;
+  display: block;
+}

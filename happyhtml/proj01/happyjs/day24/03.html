@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //변수는 var, let, const
+      //var -> JS 초기부터 있었던 놈
+      //let, const ->나중에 추가된 놈
+      var name = "sa";
+      console.log(name);
+
+      varScopeTest();
+
+      //var ->변수 스코프 : 함수단위
+      //그러니까 어느 블럭이든 함수 안에 있다면 쓸 수 있음
+      //하지만 채신-버전(ES6이후)에는 지양하고 있다
+      //얜 중복 선언이 가능함
+      var jb = 10;
+      var jb = 20;
+      console.log(jb);
+      //var jb = 59;
+      //호이스팅이 된다(undefie가 있다고)
+      function varScopeTest() {
+        if (true) {
+          var Scope = 10;
+        }
+        console.log(Scope);
+      }
+
+      letScopeTest();
+      // let(변수), const(상수) : 스코프 - 블럭단위
+      // 블럭 단위라서 블럭 내에서 선언된 변수가 블럭 외에서 쓸 수 없다
+      // 중복선언이 안됨
+      // 호이스팅은 안됨
+      let hoho;
+      console.log(hoho);
+      function letScopeTest() {
+        if (true) {
+          let letScope = 10;
+        }
+        console.log(letScope);
+      }
+    </script>
+  </body>
+</html>
