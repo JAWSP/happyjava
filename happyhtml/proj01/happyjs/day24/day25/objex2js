@@ -1,0 +1,21 @@
+const dog = {
+  name: "doggo",
+  sound: "wall",
+  say: function () {
+    console.log(this.sound);
+    console.log(this); //이 this와
+  },
+  say2: () => {
+    console.log(this.sound);
+    console.log(this);
+    //이 this는 다르다, 자기자신을 안가리킴
+    //따라서 객체 정의할때 화살표 함수를 자제합시다
+  },
+};
+dog.say();
+dog.say2();
+function test() {
+  console.log(this); //이 this는 좀 다르다
+}
+
+test();
