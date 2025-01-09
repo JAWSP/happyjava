@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const makecolor = (event) => {
+        console.log(this);
+        console.log(event);
+        document.body.style.backgroundColor = `rgb(${Math.floor(
+          Math.random() * 256
+        )},${Math.floor(Math.random() * 256)},${Math.floor(
+          Math.random() * 256
+        )})`;
+        //이벤트 삭제
+        document.removeEventListener("click", makecolor);
+      };
+      //어디든지 클릭하면 배경이 바껴오
+      //   document.addEventListener("click", (event) => {
+      //     console.log(this);
+      //     console.log(event);
+      //     document.body.style.backgroundColor = `rgb(${Math.floor(
+      //       Math.random() * 256
+      //     )},${Math.floor(Math.random() * 256)},${Math.floor(
+      //       Math.random() * 256
+      //     )})`;
+      //     //alert("ㅎㅇ");
+      //   });
+      document.addEventListener("click", makecolor);
+    </script>
+  </body>
+</html>

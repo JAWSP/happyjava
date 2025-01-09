@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .pink {
+        position: relative;
+        background-color: pink;
+        height: 200px;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .red {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: red;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--대충 박스가 2개가 있다는거-->
+    <div class="pink">
+      <div class="red"></div>
+    </div>
+
+    <script>
+      let pinkbox = document.querySelector(".pink");
+      let redbox = document.querySelector(".red");
+      let body = document.querySelector("body");
+      let html = document.querySelector("html");
+      //캡쳐링 여부와 stopPropagation을 바꿔가면서 테스트 해본다!!!
+      //이벤트는 핑->빨->몸->H (버블링)
+      //true로 하면 이벤트 전파가 역순(캡쳐링)
+      pinkbox.addEventListener(
+        "click",
+        function (e) {
+          //얜 이벤트 전파를 막는놈
+          //e.stopPropagation();
+          alert("pink box!!");
+        },
+        false
+      );
+      redbox.addEventListener(
+        "click",
+        function (e) {
+          e.stopPropagation();
+          alert("red box");
+        },
+        false
+      );
+
+      body.addEventListener(
+        "click",
+        function (e) {
+          //     e.stopPropagation();
+          alert("body box");
+        },
+        false
+      );
+
+      html.addEventListener(
+        "click",
+        function (e) {
+          //     e.stopPropagation();
+          alert("html box");
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

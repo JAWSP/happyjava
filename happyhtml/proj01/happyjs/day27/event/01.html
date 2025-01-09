@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나 이벤트 1이다</title>
+  </head>
+  <body>
+    <button id="btn1">나를 눌러요</button>
+    <button id="btn2">나도 눌러요</button>
+    <!--event-->
+    <script>
+      // 이벤트를 달아주는 표준함수
+      //소스(대상)add.Eventlistener(eventName, eventHandler, toCapture)
+      //   첫번째 인자는 클릭,드래그,키보드입력 같은 거
+      //   두번째 인자는 이벤트가 발생되었을 때 함수로 전달할일
+      //   세번째 인자는 기본값은 false, 생략가능
+      const btn = document.querySelector("#btn1");
+      const btn2 = document.querySelector("#btn2");
+      //버튼 선택자를 이렇게
+      console.log(btn);
+      //대충 예시 이벤트 핸들러
+      const hi = () => {
+        alert("hello");
+      };
+      btn.addEventListener("click", hi);
+      //이번에는 화살표로 핸들러를
+      btn2.addEventListener("click", () => {
+        alert("안녕");
+        const date = new Date();
+        const formattedDate = date.toLocaleDateString("ko-KR", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        });
+        alert(formattedDate);
+      });
+    </script>
+  </body>
+</html>

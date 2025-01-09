@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="button-a">ButtonA</button>
+    <button id="button-b">ButtonB</button>
+
+    <h1>Button A - <span id="counter-a">0</span></h1>
+    <h1>Button B - <span id="counter-b">0</span></h1>
+
+    <script>
+      const a = document.querySelector("#button-a");
+      const b = document.querySelector("#button-b");
+      const ca = document.getElementById("counter-a");
+      const cb = document.getElementById("counter-b");
+      let count_a = 0;
+      let count_b = 0;
+
+      // const increacementFunc = function (c) {
+      //   //문자라서 숫자로 형변환
+      //   c.innerHTML = Number(c.innerHTML) + 1;
+      // };
+      //함수 이벤트
+      // const increacementFunc = (e) => {
+      //   console.log(e.target);
+      //   console.log(e.target.id);
+      // };
+      const increacementFunc = function (c, count) {
+        count += 1;
+        document.querySelector(c).innerHTML = count;
+        return count;
+      };
+      //()=>로 넣어야 하나보네
+      //이렇게 하면 JS는 선언부가 아니라()를 넣어주면 바로 실행해버림
+      //a.addEventListener("click", () => increacementFunc(ca));
+      //선언부처럼 해야지 원하는타이밍에 쓸 수 있음
+      a.addEventListener("click", () => {
+        console.log(count_a);
+        count_a = increacementFunc("#counter-a", count_a);
+      });
+      //a.addEventListener("click", function() {increacementFunc(ca)});
+      //b.addEventListener("click", increacementFunc("#counter-b", count_b));
+      b.addEventListener("click", () => {
+        count_b += 1; //그럼 넌 왜되는데?
+        document.querySelector("#counter-b").innerHTML = count_b;
+      });
+      //incrementFunc함수에서 처리
+    </script>
+  </body>
+</html>

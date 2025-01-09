@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>라벨?</title>
+  </head>
+  <body>
+    <!--폼의 실행이 되었더라면 -->
+    <form action="06.html" id="myform">
+      <label for="name">이름</label>
+      <input id="name" type="text" name="name" /><br />
+      <label for="password">패스워드</label>
+      <input id="password" type="text" name="password" /><br />
+      <label for="checkPassword">패스워드확인</label>
+      <input id="checkPassword" type="text" name="checkPassword" /><br />
+      <br />
+      <input id="submit" type="submit" value="등록" />
+    </form>
+    <script>
+      //   이름이 입력 안되었다면 이름 입력해달라고 출력
+      //   비밀번호가 입력되지 않았거나, 두개의 입력값이 다르다면
+      //   알맞은 에시지를 출려하도록 하셈
+      //   이벤트, submit- 이벤트이름
+      //   preventDefault()메소드를 이용하면 기본 이벤트를 막아줌
+      const submit = document.getElementById("submit");
+
+      const form = document.getElementById("myform");
+      const n = document.getElementById("name");
+      console.log(form);
+      console.log(n);
+
+      //이쪽은 확인하는ㄴ거
+      const eventHandler = (e) => {
+        //값은 이렇게 됨
+        const name = document.getElementById("name");
+        const password = document.getElementById("password");
+        const checkPassword = document.getElementById("checkPassword");
+        //이름 입력 확인
+        if (name.value.length == 0) {
+          alert("당신 이름을 적으시오");
+          name.focus(); //그냥 진하게 해주는 효과
+          e.preventDefault();
+          return;
+        }
+        //이 조건도 입력되지 않았을때와 같은 의미
+        //가 아니라 공백도 생각을 했었네 와...
+        if (password.value.trim() === "") {
+          alert("당신 비밀번호를 적으시오");
+          name.focus();
+          e.preventDefault();
+          return;
+        }
+        if (password.value !== checkPassword.value) {
+          alert("당신 비밀번호를 똑같이 입력하시오");
+          name.focus();
+          e.preventDefault();
+          return;
+        }
+        alert(`너 이름 ${name.value}, 너 비번 ${password.value}`);
+      };
+
+      submit.addEventListener("click", eventHandler);
+    </script>
+  </body>
+</html>

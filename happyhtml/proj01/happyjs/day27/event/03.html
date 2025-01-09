@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="button">나를 눌러요</button>
+    <button id="btn">나도 눌러요</button>
+    <div></div>
+    <script>
+      function changeColor() {
+        const color = prompt();
+        document.body.style.backgroundColor = color;
+      }
+      const btn = document.querySelector("button");
+      btn.addEventListener("click", changeColor);
+
+      const btn2 = document.querySelector("#btn");
+      function outputMsg() {
+        const input = prompt();
+        document.querySelector("div").innerHTML = input;
+      }
+      btn2.addEventListener("click", outputMsg);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <ul id="todoList">
+        <li>할일1</li>
+        <li>할일2</li>
+        <li>할일3</li>
+        <li>할일4</li>
+        <li>할일5</li>
+    </ul>
+
+    <label for="todo">할일을 입력하세요.</label>
+    <input type="text" name="todo" id="todo"> <button>할일 입력</button>
+
+    <br>
+    <br>
+
+    <script>
+        //1. input에 값을 입력하고 버튼을 누르면 할일5 아래쪽에 입력된 값이 출력되게 해주세요.
+        //2. 각 할일 (li) 를 클릭하면 li 에 들어있는 text (ex)할일1) alert()에 출력되게 만들어주세요.
+        //const btn = document.querySelector("button");
+        const todolist = document.getElementById("todoList");
+        console.log(todolist);
+
+        //1. 버튼 누르면 리스트에 추가
+        //버튼이벤트를 받는 함수 추가
+        document.querySelector("button").addEventListener("click", () => {
+            //리스트에 대한 요소를 생성
+            const li = document.createElement("li");
+            //리스트안에 넣을 요소를 생성
+            const txt = document.createTextNode(document.getElementById("todo").value);
+
+            //appendChild는 상위 부분에 저 하위 노드를 추가하겠단 뜻
+            li.appendChild(txt); //li안에 저 요소를 넣기
+            todolist.appendChild(li); //li들이 있는 리스트에 li를 넣기
+        })
+
+        todolist.addEventListener("click", (e) => {
+            //console.log(e.target);
+            //const target = e.target;
+            e.stopPropagation();
+            alert(e.target.innerHTML);
+            //혹은
+            //alert(e.target.innerText)
+
+        }, false)
+    </script>
+</body>
+</html>

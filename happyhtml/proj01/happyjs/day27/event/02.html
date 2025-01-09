@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="button">나를 눌러요</button>
+    <button class="btn">나도 눌러요</button>
+    <button class="btn">나도 눌러</button>
+    <script>
+      //얘는 첫번째 만난 요소를 리턴
+      const button = document.querySelector("button");
+      console.log(button);
+      //얘는 모든 요소를 찾아서 배열로 리턴
+      const buttons = document.querySelectorAll("button");
+      console.log(buttons);
+
+      buttons[1].addEventListener("click", () => {
+        alert("sad");
+      });
+
+      //얜 id로 가져오니 첫번째, id가 여러개여도 첫번쨰
+      const btn_id = document.getElementById("button");
+      console.log(btn_id);
+      //얜 태그가 butten인 배열로 가져온다고 한다
+      const btn_tag = document.getElementsByTagName("button");
+      console.log(btn_tag);
+    </script>
+  </body>
+</html>
