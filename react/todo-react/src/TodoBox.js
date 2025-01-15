@@ -38,29 +38,65 @@ const TodoBox = () => {
   //윗놈은 꼭 12345순서대로 오거나 1부터 시작할 경우가 아닐 때도 있으니
 
   //대충 추가하는 함수
-
   const addTodoList = (title) => {
-    console.log(title);
     //map로 ip값을 뽑아서 그걸 ...로 리스트화 시키고, 그걸 max로 구해낸다
 
-    setTodoList([...todoList, { id: id.current, title: title }]);
-    id.current += 1;
+    //setTodoList([...todoList, { id: id.current, title: title }]);
+    //
+    const newTodo = {
+      title: title,
+    };
+
+    //DB에 연결하고 싶다면...?
+    //얘도 가져오거나 보내기 전까지 함수가 끝나면 안되니 async로 해둔다
+    async function addTodo(newTodo) {
+      //DB에 저장
+      await axios.post("http://localhost:1577/api/todos", newTodo);
+      //새로운 리스트 불러오기
+      //서버에서 get으로 가져오고, 그걸 setTodoList로 추가
+      const result = await axios.get("http://localhost:1577/api/todos");
+      setTodoList(result.data);
+    }
+
+    addTodo(newTodo);
   };
 
+  useEffect(() => {
+    return () => {
+      console.log("삭제됨");
+    };
+  });
   //대충 삭제하는 함수
   //id를 인자로
   //filter는 조건을 입맛대로 걸 수 있으며, 저걸로 다시 받을 수 있음
   const removeTodoList = (id) => {
-    setTodoList(todoList.filter((list) => list.id !== id));
+    //db연결시
+    async function removeTodo(id) {
+      await axios.delete(`http://localhost:1577/api/todos/${id}`);
+      const result = await axios.get("http://localhost:1577/api/todos");
+      setTodoList(result.data);
+    }
+    removeTodo(id);
+
+    //db연결 안되면
+    //setTodoList(todoList.filter((list) => list.id !== id));
   };
   //대충 수정하는 함수
   //객체를 인자로
   const updateTodoList = (todo) => {
-    console.log(todo);
-    //리랜더링이 필요없다면
-    todoList.map((list) => {
-      if (list.id === todo.id) list.title = todo.title;
-    });
+    //DB연동
+    async function updateTodo(todo) {
+      await axios.patch("http://localhost:1577/api/todos", todo);
+      const result = await axios.get("http://localhost:1577/api/todos");
+      setTodoList(result.data);
+    }
+    updateTodo(todo);
+
+    //    console.log(todo);
+    //    //리랜더링이 필요없다면
+    //    todoList.map((list) => {
+    //      if (list.id === todo.id) list.title = todo.title;
+    //    });
     //수정 후 리랜더링이 필요할때
     // const todoList = todoList.filter((list) => {
     //   //만약에 둘이 같다면 그 값 대신 다른 값을 넣고, 아니면 리스트로 그대로 둠

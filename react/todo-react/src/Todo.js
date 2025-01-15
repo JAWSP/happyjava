@@ -1,6 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Todo = ({ todo, removeHandler, updateHandler }) => {
+  //useEffect로 변경되거나 삭제됨을 감지
+  useEffect(() => {
+    console.log("변경됨");
+    return () => {
+      console.log("삭제됨");
+    };
+  }, [todo]);
   //근데 굳이 박스를 만들고 싶지 않아서 플래그먼트로 쓴다
   // 수정과, 수정폼
   const [updateMode, setUpdateMode] = useState(false);
@@ -17,7 +24,7 @@ const Todo = ({ todo, removeHandler, updateHandler }) => {
   const updater = () => {
     //수정을 적용
     //객체로 들어가니 {}로
-    //근데 아직 수정은 안되었으니 todo를 통재로 보내지 않는다
+    //근데 아직 수정은 안되었으니 todo를 통째ㄴ로 보내지 않는다
     updateHandler({ id: todo.id, title: title });
     //시켰으면 수정 부분을 닫아
     setUpdateMode(false);
@@ -33,11 +40,11 @@ const Todo = ({ todo, removeHandler, updateHandler }) => {
   } else {
     return (
       //if문으로 수정모드면 수정양식이, 수정이 아니면 보여주고/삭제방식이
-      <>
+      <li>
         {todo.title}
         <button onClick={() => removeHandler(todo.id)}>삭제</button>
         <button onClick={updateModeHandler}>수정</button>
-      </>
+      </li>
     );
   }
 };

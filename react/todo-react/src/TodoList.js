@@ -5,13 +5,12 @@ const TodoList = ({ todoList, removeHandler, updateHandler }) => {
   return (
     <ul>
       {todoList.map((todo) => (
-        <li key={todo.id}>
-          <Todo
-            todo={todo}
-            removeHandler={removeHandler}
-            updateHandler={updateHandler}
-          />
-        </li>
+        <Todo
+          key={todo.id}
+          todo={todo}
+          removeHandler={removeHandler}
+          updateHandler={updateHandler}
+        />
         //삭제 버튼은 따로 컴포넌트로 분리
       ))}
     </ul>
