@@ -1,0 +1,7 @@
+#여기가 뭐하는 데냐면
+spring:
+  application:
+    name: hellospring
+
+server:
+  port: 8888
