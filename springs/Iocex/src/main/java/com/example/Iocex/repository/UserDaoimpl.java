@@ -1,23 +1,42 @@
 package com.example.Iocex.repository;
 
 import com.example.Iocex.domain.User;
+import org.springframework.stereotype.Component;
+import sample.bean.Player;
 
 import java.util.List;
 
 //아까 그 DAO를 구현한데
+//@Component
 public class UserDaoimpl implements UserDao {
+    private List<User> users;
+
+    public UserDaoimpl() {
+
+    }
+
+    public UserDaoimpl(List<User> users) {
+        this.users = users;
+    }
+
     @Override
     public User getUser(String email) {
+        for (User user: users) {
+            if (user.getEmail().equals(email))
+                return user;
+        }
+        System.out.println("없네용");
         return null;
     }
 
     @Override
     public List<User> getUsers() {
-        return List.of();
+        return users;
     }
 
     @Override
     public void addUser(User user) {
+        users.add(user);
         System.out.println(user+" 정보 저장");
     }
 }

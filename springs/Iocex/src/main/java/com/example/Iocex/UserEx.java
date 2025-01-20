@@ -11,6 +11,6 @@ public class UserEx {
 
         UserController controller = context.getBean(UserController.class);
 
-        //context.joinUser();
+        controller.joinUser();
     }
 }

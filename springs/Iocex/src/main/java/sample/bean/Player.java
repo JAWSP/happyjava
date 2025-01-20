@@ -1,8 +1,7 @@
 package sample.bean;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.security.PublicKey;
 
 //의존성 주입?
 @Component
@@ -20,11 +19,12 @@ public class Player {
         System.out.println("player()");
     }
 
+
+    @Autowired
     public Player(Dice dice) {
         System.out.println("player with dice");
         this.dice = dice;
     }
-
 
     public void setDice(Dice dice) {
         this.dice = dice;

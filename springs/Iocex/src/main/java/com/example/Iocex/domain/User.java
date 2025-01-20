@@ -1,9 +1,17 @@
 package com.example.Iocex.domain;
 
+import com.example.Iocex.repository.UserDao;
+import org.springframework.stereotype.Component;
+
+//@Component
 public class User {
     private String name;
     private String email;
     private String password;
+
+    public User() {
+        System.out.println("유저 만들었다 이말이야");
+    }
 
     public String getName() {
         return name;
