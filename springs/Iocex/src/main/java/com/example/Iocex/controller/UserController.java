@@ -8,16 +8,19 @@ import org.springframework.stereotype.Controller;
 //컴포넌트 자손
 @Controller
 public class UserController {
+
     private UserService userService;
 
     public UserController() {
+        System.out.println("칸츄롤러나옴");
     }
 
-    @Autowired
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
+    @Autowired //setter주입
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
