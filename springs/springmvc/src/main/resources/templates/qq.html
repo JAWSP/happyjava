@@ -1,0 +1,13 @@
+<!Doctype html>
+<!--타임리프는 xmlns로 정의하게 된다, 타임리프의 태그를 th로 쓰겠다고
+그리고 굳이 th라고 붙일 필요는 없다-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>qqq</title>
+</head>
+<body>
+<!-- ''로 문자열임을, ${}로 자바쪽을-->
+<h1 th:text="'hi, '+ ${name} + '!!!'">qqqq</h1>
+</body>
+</html>
