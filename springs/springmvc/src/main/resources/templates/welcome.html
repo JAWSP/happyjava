@@ -1,0 +1,18 @@
+<!Doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>welcome</title>
+</head>
+<body>
+<!--아까 썼던 웰컴메세지는 여기에-->
+<h1 th:text="${welcomeMessage} + '!!'"></h1>
+<ul>
+    <!--반복되는 자료구조를 선언하고 그에 따른 값을 처리함-->
+    <li th:each="item : ${items}" th:text="${item.name} + ' : ' + ${item.price}"></li>
+</ul>
+<!--선언된 footer 파일 안의 footer프래그먼트를 가져옴-->
+<div th:include="common/footer :: footer"> </div>
+</body>
+</html>

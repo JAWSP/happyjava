@@ -1,0 +1,25 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+</head>
+<body>
+<h1>admin 입니다</h1>
+<p th:text="#{welcome.message}"></p>
+<ul th:each="user : ${users}" th:if="${user.isAdmin}">
+    <li th:text="'나는 ' + ${user.name} + ' 주딱이죠'"></li>
+</ul>
+
+<!-- 예시는 이렇게 나옴-->
+<table>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.name}">Username</td>
+        <td th:if="${user.admin}" th:text="'Admin'">Admin</td>
+        <td th:unless="${user.admin}" th:text="'User'">User</td>
+    </tr>
+</table>
+
+<div th:replace="common/footer :: inc"></div>
+</body>
+</html>

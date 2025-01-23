@@ -1,0 +1,17 @@
+<!Doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>상품목록</title>
+</head>
+<body>
+<h1>박 무 익스프레스</h1>
+<h3>박군제 설특집 특별 세일</h3>
+지금 난리난 박 무 요약본
+<ul>
+    <li th:each="list : ${lists}" th:text="${list.id} + '.' + ${list.name} + ' : ' + ${list.price}"></li>
+</ul>
+<div th:include="common/footer :: zzilashi"> </div>
+</body>
+</html>
