@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>admin 입니다</h1>
-<p th:text="#{welcome.message}"></p>
+<span th:text="#{w.m}">hi</span>
 <ul th:each="user : ${users}" th:if="${user.isAdmin}">
     <li th:text="'나는 ' + ${user.name} + ' 주딱이죠'"></li>
 </ul>
@@ -17,9 +17,9 @@
         <td th:text="${user.name}">Username</td>
         <td th:if="${user.admin}" th:text="'Admin'">Admin</td>
         <td th:unless="${user.admin}" th:text="'User'">User</td>
-    </tr>
+    </tr>`
 </table>
 
 <div th:replace="common/footer :: inc"></div>
-</body>
+</body>`
 </html>

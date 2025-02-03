@@ -1,0 +1,28 @@
+<!Doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>form</title>
+</head>
+<body>
+<!--form 은 안의 조건을 만족하면 action을 시행함-->
+<!--submitForm 을 가게 만드는 엑션, 거기서 userForm이란 오브젝트를 불러온다-->
+<!--기존 /는 상대주소인데, th의 /는 절대위치임-->
+<form th:action="@{submitForm}"th:object="${userForm}" method="post">
+    <!--id가 유저네임을 찾는다?-->
+    <label for="username">username</label>
+    <input type="text" th:field="*{username}" id="username" />
+    <!--id가 이상한다면, field.hasErrors부분을 가져온다고, errors가 에러 출력부-->
+    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+
+    <label for="password">password</label>
+    <input type="text" th:field="*{password}" id="password" />
+    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+    <button type="submit">Submit</button>
+
+    <p th:text="${msg}"></p>
+</form>
+</body>
+</html>

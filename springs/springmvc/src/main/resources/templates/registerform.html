@@ -1,0 +1,19 @@
+<!Doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>greeting</title>
+</head>
+<body>
+<h1>유저 등록맨</h1>
+<form th:action="@{register}" th:object="${registerform}" method="post">
+    <label for="name">name</label>
+    <input type="text" th:field="*{name}" id="name">
+
+    <label for="email">email</label>
+    <input type="text" th:field="*{email}" id="email">
+    <button type="submit">확인</button>
+</form>
+</body>
+</html>

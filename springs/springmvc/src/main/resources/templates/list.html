@@ -1,0 +1,17 @@
+<!Doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>대충 리스트</title>
+</head>
+<body>
+<h1>남은게 뭐가 있느냐</h1>
+<ul th:each="item, stats : ${items}"
+    th:if="${stats.index >= 2 and stats.index < 7}">
+    <li
+    th:text="${stats.current}">
+    </li>
+</ul>
+</body>
+</html>

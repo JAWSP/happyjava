@@ -1,0 +1,32 @@
+<!Doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Date Time Ex</title>
+</head>
+<body>
+<h1>승기야 몇시고...</h1>
+<img src="/176c8357e442f141c.png" />
+<p>
+    current Date : <span th:text="${currentDate}"></span>
+</p>
+<!--<p>-->
+<!--    temp current Date : <span th:text="${#temporals.format(currentDateTime,'yyyy-MM-dd HH:mm:ss'}"></span>-->
+<!--</p>-->
+
+<p>
+    current time : <span th:text="${currentTime}"></span>
+</p>
+<p>
+    current Daytime : <span th:text="${currentDateTime}"></span>
+</p>
+<p>
+    current ZoneTime : <span th:text="${currentZoneDateTime}"></span>
+</p>
+
+<p>
+    temp current DateTime : <span th:text="${#temporals.format(currentDateTime,'yyyy-MM-dd HH:mm:ss')}"></span>
+</p>
+</body>
+</html>
