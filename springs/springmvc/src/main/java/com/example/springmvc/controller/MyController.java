@@ -50,6 +50,13 @@ public class MyController {
         return "greeting.html";
     }
 
+    @GetMapping("/users/{userId}") //http://localhost:8080/users/carami   -- {userId} 는 값이들어올거다라는 의미.
+    public String getUser(@PathVariable("userId") String userId, Model model){
+        System.out.println(userId);
+        model.addAttribute("userId",userId);
+        return "userView";
+    }
+
 
 
 }

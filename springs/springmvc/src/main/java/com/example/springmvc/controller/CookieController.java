@@ -1,14 +1,80 @@
 package com.example.springmvc.controller;
 
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class CookieController {
+
+    @GetMapping("/cookiesetform")
+    public String cookieSetForm() {
+        //해당 요청이 오면 쿠키 이름과 쿠키 값을 받는 화면을 만든다
+        return "cookiesetform";
+    }
+
+    @GetMapping("/cookieset")
+    //나중에는 엔티티를 쓰긴 한데 편의상 이렇게
+    public String cookieSet(@RequestParam(name = "cookieName")String cookieName,
+                            @RequestParam(name= "cookieValue")String cookieValue,
+                            HttpServletResponse response) {
+        //쿠키 객체 생성, 얜 디폴트 생성자가 없다
+        Cookie cookie = new Cookie(cookieName, cookieValue);
+        //경로, 수명 설정
+        cookie.setPath("/");
+        //초단위임
+        cookie.setMaxAge(7 * 24 * 60 * 60);
+
+        //응답에 쿠키 추가
+        response.addCookie(cookie);
+
+        //쿠키뷰로 리다이렉트
+        return "redirect:/cookieview";
+    }
+
+    @GetMapping("/cookieview")
+    public String cookieView(HttpServletRequest request, Model model) {
+        //쿠키는 요청헤더에 있습니다
+        Cookie[] cookies = request.getCookies();
+        List<String> cookieList = new ArrayList<>();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                //값을 꺼내서
+                String tmp = cookie.getName() + "=" + cookie.getValue();
+                System.out.println(tmp);
+                //배열에 넣어준다, 쿠키를 통째로 넣어준다면 타임리프가 인식을 못함
+                cookieList.add(tmp);
+            }
+            model.addAttribute("cookies", cookieList);
+        }
+        //그리고 그 쿠키를 모델에 넣음
+        return "cookieview";
+    }
+
+    //쿠키 삭제
+    //그리고 직접 삭제가 안됨
+    //하지만 쿠키는 같은게 2개 있을 수 밖에 없음
+    //그걸 응용해서 쿠키를 재생성하고 지속시간을 0으로 하면 그게 삭제가 됨
+    @GetMapping("/cookiedelete")
+    public String cookieDelete(@RequestParam(name = "cookieName") String cookieName,
+                               HttpServletResponse response) {
+        Cookie cookie = new Cookie(cookieName, "a");
+
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+
+        return "redirect:/cookieview";
+    }
 
     @GetMapping("/visit")
     public String showVisit(

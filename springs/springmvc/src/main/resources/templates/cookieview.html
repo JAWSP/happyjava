@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>cookieview</title>
+</head>
+<body>
+<h1>쿠키 목록덜</h1>
+
+<ul>
+    <li  th:each="cookie : ${cookies}">
+        <span th:text="${cookie}"></span>
+        <!-- 일단 name=value로 합쳐져있음 #를 이용하여 지워서 넣어줌-->
+        <a th:href="@{/cookiedelete(cookieName=${#strings.substringBefore(cookie, '=')})}">쿠키삭제</a>
+    </li>
+</ul>
+<br>
+<a href="/cookiesetform">다시 추가하러가기</a>
+</body>
+</html>

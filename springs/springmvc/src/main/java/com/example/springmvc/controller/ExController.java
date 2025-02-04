@@ -95,4 +95,6 @@ public class ExController {
     public void addAttributes(Model model) {
         model.addAttribute("msg", "ㅎㅇㅎㅇ");
     }
+
+
 }
