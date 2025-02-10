@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>글 상세</title>
+    <style>
+        .container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            width: 50%;
+            margin: auto;
+            background-color: #f9f9f9;
+        }
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .actions a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="container>">
+    <p class="title" th:text="${board.title}"></p>
+
+    <p><strong>Name:</strong> <span th:text="${board.name}"></span></p>
+    <p><strong>Content:</strong> <span th:text="${board.content}"></span></p>
+    <p><strong>Created At:</strong> <span th:text="${board.createdAt}"></span></p>
+</div>
+<a th:href="@{/boards/list}">리스트로</a>
+<a th:href="@{/boards/updateform/{id}(id=${board.id})}">최수종</a>
+<a th:href="@{/boards/deleteform/{id}(id=${board.id})}">김삭제</a>
+</body>
+</html>

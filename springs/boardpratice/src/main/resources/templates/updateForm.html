@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>업 데 이 트</title>
+</head>
+<body>
+<form th:action="@{/boards/update/{id}(id=${board.id})}" method="post" th:object="${board}">
+  <fieldset>
+    <label for="name">Name</label> <br/>
+    <input type="text" id="name" th:field="*{name}" required> <br>
+    <label for="name">Title</label> <br/>
+    <input type="text" id="title" th:field="*{title}" required> <br>
+    <label for="content">내용</label> <br/>
+    <textarea type="text" id="content" th:field="*{content}"></textarea>
+    <br> <br>
+    <label for="password">password 확인</label> <br/>
+    <input type="password" id="password" th:field="*{password}" required> <br> <br>
+    <button type="submit">Update</button>
+  </fieldset>
+</form>
+
+</body>
+</html>

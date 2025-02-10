@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: boardpratice
+  datasource:
+    url: jdbc:mysql://localhost:3306/praticedb
+    username: giga
+    password: chad
+    driver-class-name: com.mysql.cj.jdbc.Driver
+

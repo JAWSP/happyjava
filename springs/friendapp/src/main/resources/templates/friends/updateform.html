@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <title>갱신 폼폼폼폼</title>
+</head>
+<body>
+<h1>친구 수정</h1>
+<form th:action="@{/friends/update}" method="post" th:object="${friend}">
+  <label for="name">이름 :</label>
+  <!--required는 비워지면 안된다는 안전장치-->
+  <input type="text" id="name" th:field="*{name}" required>
+
+  <label for="email">이메일 :</label>
+
+  <input type="text" id="email" th:field="*{email}" required>
+  <br/>
+  <button type="submit">적용</button>
+</form>
+</body>
+</html>

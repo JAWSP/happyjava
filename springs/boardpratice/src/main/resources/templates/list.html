@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>게시개시판판판</title>
+  <link rel="stylesheet" th:href="@{/css/design.css}">
+</head>
+<body>
+<h1>여기에 메인 페이지 제목을 입력</h1>
+<table th:if="${!boards.empty}">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="board:${boards}">
+      <td th:text="${board.id}"></td>
+      <td th:text="${board.name}"></td>
+      <td>
+        <a th:href="@{/boards/view/{id}(id=${board.id})}" th:text="${board.title}"></a>
+      </td>
+      <td th:text="${#strings.substringBefore(board.createdAt, 'T')}"></td>
+    </tr>
+  </tbody>
+</table>
+<div th:if="${boards.totalPages > 1}">
+  <ul>
+    <li th:each="i:${#numbers.sequence(1, boards.totalPages)}">
+      <a th:href="@{/boards/list(page=${i})}" th:text="${i}"></a>
+    </li>
+  </ul>
+</div>
+<a th:href="@{add}" text-align="center">개시하긔</a>
+</body>
+</html>
