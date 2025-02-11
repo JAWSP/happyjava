@@ -38,13 +38,10 @@ public class BoardService {
     }
 
     public Board updateBoard(Long id, Board board) {
-        if (findBoardById(id).getPassword().equals(board.getPassword())) {
-            board.setUpdatedAt(findBoardById(id).getCreatedAt());
-            board.setUpdatedAt(LocalDateTime.now());
-            return boardRepository.save(board);
-        }
-        else
-            return null;
+
+        board.setCreatedAt(findBoardById(id).getCreatedAt());
+        board.setUpdatedAt(LocalDateTime.now());
+        return boardRepository.save(board);
     }
 
     @Transactional(readOnly = true)
@@ -53,7 +50,7 @@ public class BoardService {
     }
 
     public void deleteBoard(Long id, Board board) {
-        if (findBoardById(id).getPassword().equals(board.getPassword()))
+        //if (findBoardById(id).getPassword().equals(board.getPassword()))
             boardRepository.deleteById(id);
     }
 }

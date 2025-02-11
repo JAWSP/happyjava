@@ -7,6 +7,7 @@
 </head>
 <body>
 <h1>여기에 메인 페이지 제목을 입력</h1>
+<p th:if="${ds}" style="color: blue;" th:text="${ds}"></p>
 <table th:if="${!boards.empty}">
   <thead>
     <tr>

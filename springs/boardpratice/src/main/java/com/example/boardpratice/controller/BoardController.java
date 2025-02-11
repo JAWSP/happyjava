@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/boards")
@@ -49,7 +52,9 @@ public class BoardController {
 
     @GetMapping("view/{id}")
     public String viewBoard(@PathVariable(name ="id")Long id, Model model) {
+
         model.addAttribute("board", boardService.findBoardById(id));
+        //model.addAttribute("comments")
         return "detail";
     }
 
@@ -61,22 +66,39 @@ public class BoardController {
     }
 
     @PostMapping("delete/{id}")
-    public String deleteBoard(@PathVariable(name = "id")Long id, @ModelAttribute Board board) {
-        boardService.deleteBoard(id, board);
-        return "redirect:/boards/list";
+    public String deleteBoard(@PathVariable(name = "id")Long id,
+                              @ModelAttribute Board board,
+                              RedirectAttributes redirectAttributes) {
+        if (boardService.findBoardById(id).getPassword().equals(board.getPassword())) {
+            redirectAttributes.addFlashAttribute("ds", "삭제 완료");
+            boardService.deleteBoard(id, board);
+            return "redirect:/boards/list";
+        }
+        else {
+            redirectAttributes.addFlashAttribute("error", "비밀번호가 틀린댑쇼");
+            return  "redirect:/boards/deleteform/" + id.toString();
+        }
     }
 
     @GetMapping("updateform/{id}")
     public String showUpdateForm(@PathVariable(name="id")Long id, Model model) {
+        System.out.println("start : " + boardService.findBoardById(id));
         model.addAttribute("board", boardService.findBoardById(id));
         return "updateForm";
     }
 
     @PostMapping("update/{id}")
-    public String updateBoard(@PathVariable(name="id")Long id, @ModelAttribute Board board) {
-        boardService.updateBoard(id, board);
-        //대충 비번 확인하고 업데이트 하는거
-        return "redirect:/boards/view/{id}";
+    public String updateBoard(@PathVariable(name="id")Long id, @ModelAttribute Board board,
+                              RedirectAttributes redirectAttributes) {
+        if (boardService.findBoardById(id).getPassword().equals(board.getPassword())) {
+            redirectAttributes.addFlashAttribute("us", "업데이트 완료");
+            boardService.updateBoard(id, board);
+            return "redirect:/boards/view/{id}";
+        }
+        else {
+            redirectAttributes.addFlashAttribute("error", "비밀번호가 틀린댑쇼");
+            return "redirect:/boards/view/" +id.toString();
+        }
     }
 
 
