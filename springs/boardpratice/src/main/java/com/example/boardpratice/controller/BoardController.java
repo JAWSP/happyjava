@@ -97,7 +97,7 @@ public class BoardController {
         }
         else {
             redirectAttributes.addFlashAttribute("error", "비밀번호가 틀린댑쇼");
-            return "redirect:/boards/view/" +id.toString();
+            return "redirect:/boards/updateform/" +id.toString();
         }
     }
 

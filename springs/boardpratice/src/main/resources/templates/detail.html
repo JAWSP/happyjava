@@ -30,19 +30,24 @@
 
     <p><strong>Name:</strong> <span th:text="${board.name}"></span></p><br>
     <p><strong>Content:</strong> <div th:text="${board.content}"></div></p><br>
-    <p><strong>Created At:</strong> <span th:text="${board.createdAt}"></span></p>
+    <p><strong>Created At:</strong> <span th:text="${#strings.substringBefore(board.createdAt, 'T')}
++ ' ' + ${#strings.substringAfter(board.createdAt, 'T')}"></span></p>
 </div>
 
 
 <h2 style="color: red;">주의! 만든놈이 너무 무능하고 나태하여 덧글창이 말이 아닙니다</h2>
 <h3 style="color: red;">따라서 덧글은 그저 장식이니 ㄹㅇㅋㅋ하고 넘어가십시오</h3>
+<div>
+    <input type="checkbox">이 부분에 동의하신다면 옆의 체크를 누르시오
+    <p>근데 눌러봤자 별 변화가 없으니 그냥 재미로 누르시오</p>
+</div>
 
 덧글창
 <div>
 
 </div>
 
-
+<fieldset>
 덧글 달기
 <form th:action="@{/boards/delete/{id}(id=${board.id})}" method="post" th:object="${board}">
     <label for="name">이름</label>
@@ -54,6 +59,7 @@
 
     <button type="submit">덧글달기</button>
 </form>
+</fieldset>
 
 
 <a th:href="@{/boards/list}">리스트로</a>
