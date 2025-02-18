@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 public class JPAUtil {
     private static final EntityManagerFactory emfInstance =
             Persistence.createEntityManagerFactory("UserPU");
-
     private JPAUtil() {}
 
     static {

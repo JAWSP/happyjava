@@ -16,6 +16,7 @@ dependencies {
    // implementation 'org.slf4j:slf4j-simple:2.0.13'
     implementation 'ch.qos.logback:logback-classic:1.2.11'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
 }
 
 test {
