@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: rest
+  datasource:
+    url: jdbc:mysql://localhost:3306/jpadb
+    username: giga
+    password: chad
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
