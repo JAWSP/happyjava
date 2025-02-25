@@ -15,6 +15,8 @@ public class RestApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RestApplication.class, args);
+		Object asd = new Long(1L);
+		System.out.println(asd);
 	}
 
 	@Bean
