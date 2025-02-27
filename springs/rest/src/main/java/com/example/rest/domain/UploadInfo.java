@@ -5,4 +5,6 @@ import lombok.Setter;
 
 @Getter @Setter
 public class UploadInfo {
+    private String description;
+    private String tag;
 }

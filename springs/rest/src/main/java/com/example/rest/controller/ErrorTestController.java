@@ -13,6 +13,11 @@ public class ErrorTestController {
         throw new RuntimeException("그냥 에러 내봄");
     }
 
+//    @GetMapping("/api/i")
+//    public String teste() {
+//        throw new
+//    }
+
     @GetMapping("/api/n")
     public  String test2(@RequestParam(name = "id", required = false)Long id) {
         if (id == null) {

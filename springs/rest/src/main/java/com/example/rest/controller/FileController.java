@@ -5,10 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StreamUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileOutputStream;
@@ -44,14 +41,15 @@ public class FileController {
     @PostMapping("/upload")
     public ResponseEntity<String> uploadfile(
             //파일에 대한정보와,
-            @RequestParam("file")MultipartFile file
+            @RequestParam("file")MultipartFile file,
            // @RequestParam(name = "info", required = false)UploadInfo uploadInfo
+             @RequestPart(name = "info", required = false)UploadInfo uploadInfo
             ) {
         //여기서 부터 함수내용
         //얜 그냥 파일명 확인
         log.info(file.getOriginalFilename());
         //메세지초기화
-        String msg="";
+        log.info(uploadInfo.getDescription());
         //인자로 받은 파일을 정보를 바탕으로 입력 스트림을 초기화
         try(InputStream inputStream = file.getInputStream()) {
 
