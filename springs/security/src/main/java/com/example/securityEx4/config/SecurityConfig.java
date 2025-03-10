@@ -28,6 +28,7 @@ public class SecurityConfig {
 
         ;
 
+        //로그인
         security
                 .formLogin(form -> form
                         .loginPage("/user/loginform")
@@ -37,6 +38,15 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/user/")
+                );
+        //세션
+        security
+                .sessionManagement(session -> session
+                        //동시 접속 허용 횟수
+                        .maximumSessions(1)
+                        //동시에 로그인 되었으면 기존 것을 차단함, false가 기본값
+                        //true시 동시에 로그인시 새로이 로그인 될 부분이 차단됨
+                        .maxSessionsPreventsLogin(true)
                 );
 
         security

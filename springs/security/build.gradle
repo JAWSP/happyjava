@@ -24,6 +24,11 @@ repositories {
 }
 
 dependencies {
+	//OAuth2 관련 라이브러리 추가
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+
+
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 //	얜 타임리프에 시큐리티 추가
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.2.RELEASE'
@@ -36,6 +41,18 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// jwt & json
+	// jwts
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+
+	//gson - json 메시지를 다루기 위한 라이브러리
+	implementation 'com.google.code.gson:gson'
+
+	//validation
+	implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
 }
 
 tasks.named('test') {
