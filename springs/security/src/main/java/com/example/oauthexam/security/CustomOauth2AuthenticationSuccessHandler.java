@@ -11,14 +11,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -53,7 +51,7 @@ public class CustomOauth2AuthenticationSuccessHandler implements AuthenticationS
         String socialId = defaultOAuth2User.getAttributes().get("id").toString();
         String name = defaultOAuth2User.getAttributes().get("name").toString();
 
-        Optional<User> existUser = userService.findByProviferAndSocialId(socialId, name);
+        Optional<User> existUser = userService.findByProviderAndSocialId(provider, socialId);
 
         //그리고 그 유저가 우리 서비스에 정보가 있냐 없냐
         //그거에 따라 디라이렉트 시키라고 응답객체에 보낸다

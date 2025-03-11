@@ -28,7 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final SocialUserService socialUserService;
-    private final AuthenticationSuccessHandler CustomOauth2AuthenticationSuccessHandler;
+    private final CustomOauth2AuthenticationSuccessHandler customOauth2AuthenticationSuccessHandler;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
 
@@ -38,7 +38,9 @@ public class SecurityConfig {
                         //기존 로그인 관련은 공개해야지 로그인을 하지
                         .requestMatchers("/loginform", "/userregform", "/").permitAll()
                         //소셜 로그인도 공개해야지 소셜 로그인을 하지
-                        .requestMatchers("/oauth2/**", "/login/oauth2/code/github","/registerSocialUser","/saveSocialUser").permitAll())
+                        .requestMatchers("/oauth2/**", "/login/oauth2/code/github","/registerSocialUser","/saveSocialUser").permitAll()
+                        .anyRequest().authenticated()
+                )
                 .csrf(csrf -> csrf.disable())
                 .formLogin(form -> form.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
@@ -48,16 +50,25 @@ public class SecurityConfig {
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/loginform")
                         .failureUrl("/loginFalure")
+                        //여기가 본체
                         .userInfoEndpoint(userInfo -> userInfo
                                 //이 유저 서비스는 시큐리티가 구현하고 있는거
+                                //하지만 그 안은 내가 구현한거
                                 .userService(this.oAuth2UserService())
                                )
-                        .successHandler(CustomOauth2AuthenticationSuccessHandler))
+                        //근데 DB저장 뿐만 아니라 추가적으로 그 정보를 컨택스트 홀더에 넣고 싶어
+                        .successHandler(customOauth2AuthenticationSuccessHandler)
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID"))
                         ;
 
         return security.build();
     }
 
+    //소셜에서 정보를 준거를 DB에 저장하고, 토큰도 발급하고
     //<첫번째가 요청한 유저의 정보를 담은 객체, 두번째는 그 유저의 객체의 타입>
        @Bean
        public OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService() {
