@@ -39,6 +39,8 @@ public class SecurityConfig {
                         .requestMatchers("/loginform", "/userregform", "/").permitAll()
                         //소셜 로그인도 공개해야지 소셜 로그인을 하지
                         .requestMatchers("/oauth2/**", "/login/oauth2/code/github","/registerSocialUser","/saveSocialUser").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/shop/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.disable())

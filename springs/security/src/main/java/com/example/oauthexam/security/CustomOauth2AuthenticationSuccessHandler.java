@@ -63,7 +63,8 @@ public class CustomOauth2AuthenticationSuccessHandler implements AuthenticationS
                     user.getName(),
                     user.getRoles()
                             .stream()
-                            .map(Role::getName)
+                            //.map(Role::getName)
+                            .map(role -> "ROLE_"+role.getName())
                             .collect(Collectors.toList()));
 
             //실제로 저 긴게 있다고

@@ -6,6 +6,7 @@ import com.example.oauthexam.security.CustomUserDetails;
 import com.example.oauthexam.service.SocialLoginInfoService;
 import com.example.oauthexam.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class UserController {
@@ -58,8 +60,8 @@ public class UserController {
     @PostMapping("/saveSocialUser")
     public String saveSocialUser(@ModelAttribute SocialUserRequestDto requestDto) {
         Optional<SocialLoginInfo> socialLoginInfoOptional =
-                socialLoginInfoService.findByProviderAndUuidAndSocialId(requestDto.getProvider(), requestDto.getUuid(), requestDto.getSocialID());
-
+                socialLoginInfoService.findByProviderAndUuidAndSocialId(requestDto.getProvider(), requestDto.getUuid(), requestDto.getSocialId());
+       // log.info("에러가 문디{} {} {}", requestDto.getProvider(), requestDto.getUuid(), requestDto.getSocialId());
         if (socialLoginInfoOptional.isPresent()) {
             SocialLoginInfo socialLoginInfo = socialLoginInfoOptional.get();
             LocalDateTime now = LocalDateTime.now();
