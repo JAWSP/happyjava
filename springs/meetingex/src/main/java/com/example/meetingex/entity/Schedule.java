@@ -27,14 +27,15 @@ public class Schedule {
     private LocalTime time;
     @Column(nullable = false)
     private String loaction;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Status status;
 
-    public Schedule() {
-        date = LocalDate.now();
-        time = LocalTime.now();
-    }
+    @ManyToOne
+    @JoinColumn(name = "meeting_id")
+    private Meeting meeting;
+
+//    public Schedule() {
+//        date = LocalDate.now();
+//        time = LocalTime.now();
+//    }
 }
 
 

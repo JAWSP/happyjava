@@ -23,5 +23,7 @@ public class UserSchedule {
     private Schedule schedule;
 
     //상태를 의미
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Status status;
 }

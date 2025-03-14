@@ -2,10 +2,12 @@ package com.example.meetingex.controller;
 
 import com.example.meetingex.dto.ErrorResponseDto;
 import com.example.meetingex.dto.MeetingDto;
+import com.example.meetingex.dto.ParticipantsDto;
 import com.example.meetingex.entity.Meeting;
 import com.example.meetingex.jwt.JwtUtil;
 import com.example.meetingex.service.MeetingService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/meetings")
+@Slf4j
 public class MeetingController {
     private final MeetingService meetingService;
     private final JwtUtil jwtUtil;
@@ -47,9 +50,9 @@ public class MeetingController {
                                             @RequestHeader("Authorization") String token,
                                             @PathVariable("meetingId") Long meetingId) {
 
-        if (jwtUtil.validateToken(token) == null)
+
+        if (meetingService.updateMeeting(meetingDto,token, meetingId) == null)
             return ResponseEntity.status(401).body(new ErrorResponseDto("뭔가 이상함"));
-        meetingService.updateMeeting(meetingDto, meetingId);
         return ResponseEntity.ok().build();
     }
 
@@ -58,9 +61,8 @@ public class MeetingController {
     private ResponseEntity<?>deleteMeetings(@RequestHeader("Authorization") String token,
                                             @PathVariable("meetingId")Long id) {
 
-        if (jwtUtil.validateToken(token) == null)
+        if (meetingService.deleteMeeting(id, token) == null)
             return ResponseEntity.status(401).body(new ErrorResponseDto("토큰이 이상함"));
-        meetingService.deleteMeeting(id);
         return ResponseEntity.ok().build();
     }
 
@@ -74,6 +76,20 @@ public class MeetingController {
     }
 
     //GET /meetings/{meetingId}/participants
-    @GetMapping("/meetings/{meetingId}/participants")
-    private
+    @GetMapping("/{meetingId}/participants")
+    private ResponseEntity<List<ParticipantsDto>>showParticipants(@PathVariable("meetingId")Long id) {
+        //여기에 리스트를 추가
+        return ResponseEntity.ok(meetingService.showParticipants(id));
+    }
+
+    //delete /meetings/{meetingId}/leave
+    @DeleteMapping("{meetingId}/leave")
+    private ResponseEntity<?> exitMeeting(@RequestHeader("Authorization") String token,
+                                          @PathVariable("meetingId")Long id)
+    {
+        if(meetingService.exitMeeting(token, id) == null)
+            return ResponseEntity.status(401).body(new ErrorResponseDto("탈퇴 에러"));
+        return ResponseEntity.ok().build();
+    }
+
 }

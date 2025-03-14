@@ -29,4 +29,6 @@ public class UserMeeting {
 
     @Column(nullable = false)
     private boolean isCreator;
+
+
 }
